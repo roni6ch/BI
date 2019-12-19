@@ -1,0 +1,66 @@
+<div class="hpWrapper">
+  <mat-vertical-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>What are you looking for?</ng-template>
+        <mat-card class="card" *ngFor="let c of categories">
+          <img mat-card-image src="./assets/images/categories/{{c.img}}" alt="{{c.name}}">
+          <span>{{c.name}}</span>
+        </mat-card>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Where?</ng-template>
+        <ul>
+          <li *ngFor="let a of areas" class="area">
+            {{a}}
+          </li>
+        </ul>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="thirdFormGroup">
+      <form [formGroup]="thirdFormGroup">
+        <ng-template matStepLabel>Filter by</ng-template>
+        <button mat-stroked-button color="primary">Let's do it!</button>
+      </form>
+    </mat-step>
+  </mat-vertical-stepper>
+
+  <div class="results">
+
+    <mat-accordion *ngFor="let r of results" class="result">
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <img src="./assets/images/{{r.logo}}" class="person_logo" />
+          </mat-panel-title>
+          <mat-panel-description>
+            <p class="name">{{r.name}}</p>
+            <p class="rate">Rate: <span>{{r.rate}}</span></p>
+            <p class="reviews">{{r.reviews.length}} Reviews</p>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+  </div>
+</div>
+<div class="hpMaps">
+  <!--<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom"></agm-map>-->
+</div>
+
+
+
+
+<!--
+                <mat-form-field class="hpForm">
+                  <input type="text" placeholder="Business name" aria-label="Number" matInput [formControl]="myControl"
+                    [matAutocomplete]="auto">
+                  <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option.name">
+                      <span>{{option.name}}</span> <small> ({{option.city}})</small>
+                    </mat-option>
+                  </mat-autocomplete>
+                </mat-form-field>
+-->

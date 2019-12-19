@@ -1,0 +1,35 @@
+$grayColor: #717171;
+
+#menu {
+  cursor: pointer;
+}
+.nav > span {
+  margin-top: 1px;
+}
+#menuContent {
+  position: static;
+}
+.nav {
+  color: #fff;
+  ul li {
+    opacity: 0.75;
+  }
+}
+#menuContent ul li {
+  cursor: pointer;
+  margin: 10px;
+  transition: 0.3s;
+}
+#menuContent ul li:hover {
+  cursor: pointer;
+  margin: 10px;
+  opacity: 1;
+}
+.mat-toolbar {
+  background: $grayColor;
+}
+.mat-drawer {
+  background: $grayColor !important;
+
+  margin-top: 64px;
+}
