@@ -5,8 +5,10 @@
 <mat-sidenav-container id="menuContent" (backdropClick)="sidenav.close()">
     <mat-sidenav #sidenav (keydown.escape)="sidenav.close()" disableClose>
         <ul>
+            <li *ngIf="!_auth.isLoggedIn()"><a routerLink="/app-login" routerLinkActive="active" (click)="sidenav.close()">Login</a> </li>
             <li><a routerLink="/app-homepage" routerLinkActive="active" (click)="sidenav.close()">Homepage</a> </li>
             <li><a routerLink="/app-contact" routerLinkActive="active" (click)="sidenav.close()">Contact Us</a> </li>
+            <li *ngIf="_auth.isLoggedIn()"><a routerLink="/app-login" routerLinkActive="active" (click)="sidenav.close(); _auth.logout()">Logout</a> </li>
         </ul>
     </mat-sidenav>
 

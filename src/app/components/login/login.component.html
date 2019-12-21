@@ -1,0 +1,38 @@
+<div class="wrapper slide-in-blurred-bottom">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+      <h2 [ngClass]="[signin ? 'active' : 'inactive underlineHover']" (click)="signin = true"> Sign In </h2>
+      <h2 [ngClass]="[!signin ? 'active' : 'inactive underlineHover']"  (click)="signin = false">Sign Up </h2>
+  
+      <!-- Icon -->
+      <div class="fadeIn first">
+        <mat-icon
+        aria-hidden="false"
+        aria-label="person icon"
+        class="person"
+        >person</mat-icon
+      >      </div>
+  
+      <!-- Login Form -->
+      <form>
+        <input type="text" id="email" [(ngModel)]="loginUser.username" class="fadeIn second" name="username" placeholder="login" />
+        <input type="text" id="password" [(ngModel)]="loginUser.password" class="fadeIn third" name="password" placeholder="password" />
+        <input type="submit" class="fadeIn fourth" [value]="signin ? 'Log In' : 'Sign Up'" (click)="authenticate()" />
+
+        <p>--OR--</p>
+        <button class="loginBtn loginBtn--facebook" routerLink="/app-homepage">
+            Login with Facebook
+          </button>
+          
+          <button class="loginBtn loginBtn--google" routerLink="/app-homepage" >
+            Login with Google
+          </button>
+      </form>
+  
+      <!-- Remind Passowrd -->
+      <div id="formFooter">
+        <a class="underlineHover" href="#">Forgot Password?</a>
+      </div>
+  
+    </div>
+  </div>

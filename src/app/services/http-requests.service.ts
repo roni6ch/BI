@@ -5,8 +5,6 @@ import * as faker from "faker";
 import * as moment from "moment";
 import _ from "lodash";
 import { Observable } from 'rxjs';
-import { of } from 'rxjs';
-
 
 
 @Injectable({
@@ -44,11 +42,13 @@ export class HttpRequestsService {
       logo: faker.image.avatar(),
       web: faker.internet.url(),
       phone: faker.phone.phoneNumberFormat(),
-      rate: (Math.random() * (1 - 5) + 5).toFixed(1),
+      rate_sum: (Math.random() * (1 - 5) + 5).toFixed(1),
       reviews: [...Array(Math.floor(Math.random() * 5 + 1))].map((_, i) => {
         return {
           review: faker.lorem.sentence(),
-          rate: (Math.random() * (1 - 5) + 5).toFixed(1),
+          rate_price: (Math.random() * (1 - 5) + 5).toFixed(1),
+          rate_rel: (Math.random() * (1 - 5) + 5).toFixed(1),
+          rate_pro: (Math.random() * (1 - 5) + 5).toFixed(1),
           name: faker.name.firstName() + " " + faker.name.lastName(),
           date: moment(this.randomDate()).format("L")
         };
@@ -63,7 +63,7 @@ export class HttpRequestsService {
       ),
       business_name: faker.company.companyName()
     });
-    this.results = _.sortBy(this.results, [function(o) { return o.rate; }]).reverse();
+    this.results = _.sortBy(this.results, [function(o) { return o.rate_sum; }]).reverse();
   console.log(this.results);
     return this.results;
   }

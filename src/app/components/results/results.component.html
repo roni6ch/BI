@@ -31,39 +31,79 @@
         <mat-panel-description>
           <p class="name">{{ r.name }}</p>
           <p class="rate">
-            Rate <span>{{ r.rate }}</span>
+            <mat-icon
+            aria-hidden="false"
+            aria-label="star icon"
+            class="star"
+            >star</mat-icon
+          > Rate <span>{{ r.rate_sum }}</span> 
           </p>
           <p class="reviews">
-            Reviews <span>{{ r.reviews.length }}</span>
+            <mat-icon  aria-hidden="false" class="reviewIcon"
+            aria-label="review icon"> rate_review</mat-icon> Reviews <span>{{ r.reviews.length }}</span>
           </p>
+          
         </mat-panel-description>
       </mat-expansion-panel-header>
 
       <!-- BODY -->
       <div class="resultExpendedWrapper">
-        <div class="userInfo">
-          <a href="{{ r.web }}">{{ r.web }}</a>
 
-          <a class="phone" href="tel:{{ r.phone }}">
-            <button mat-stroked-button color="primary">Call now!</button></a
-          >
+        
+        <div class="userInfoWrapper">
+          <div class="userInfo">
           <p class="buissnessName">{{ r.business_name }}</p>
+          <a href="{{ r.web }}">{{ r.web }}</a>
+          <div class="gallery" *ngFor="let g of r.gallery">
+            <img src="{{g}}" />
+          </div>
         </div>
+          <div class="social_icons">
+            <a href="#"><img src="./assets/images/icons/facebook.png" alt="facebook share icon" /></a>
+            <a href="#"><img src="./assets/images/icons/whatsapp.png" alt="whatsapp share icon" /></a>
+            <a href="#"><img src="./assets/images/icons/instagram.png" alt="instagram share icon" /></a>
+            <a href="#"><img src="./assets/images/icons/search.png" alt="search share icon" /></a>
+            <a href="#"><img src="./assets/images/icons/share.png" alt="share share icon" /></a>
+            <a class="phone" href="tel:{{ r.phone }}"> <button mat-stroked-button color="primary">Call now!</button></a >
+              <button mat-stroked-button color="primary" (click)="sendMessage(r)">Send message!</button>
+
+          </div>
+        </div>
+
+      <!-- REVIEWS -->
         <div class="reviewsWrapper">
-          <h2>Reviews:</h2>
           <ul>
             <li *ngFor="let rev of r.reviews" class="review">
               <div class="reviewRate">
-                <mat-icon
+                <ul>
+                  <li>
+                <small>
+                  <mat-icon
                   aria-hidden="false"
                   aria-label="star icon"
                   class="star"
                   >star</mat-icon
+                ><span>{{ rev.rate_price }}</span> Price </small
+                ></li><li>
+                <small>
+                  <mat-icon
+                  aria-hidden="false"
+                  aria-label="star icon"
+                  class="star"
+                  >star</mat-icon
+                >  <span>{{ rev.rate_rel }}</span> Pro</small
+                ></li><li>
+                <small>
+                  <mat-icon
+                  aria-hidden="false"
+                  aria-label="star icon"
+                  class="star"
+                  >star</mat-icon
+                >  <span>{{ rev.rate_pro }}</span> Reliability</small
                 >
-
-                <small>{{ rev.rate }} </small>
-                <span>{{ rev.name }}</span>
-                <small> {{ rev.date }} </small>
+              </li>  </ul>
+              <span>{{ rev.name }}</span>
+              <small> {{ rev.date }} </small>
               </div>
 
               <div class="reviewInfo">
@@ -72,6 +112,7 @@
             </li>
           </ul>
         </div>
+      
       </div>
     </mat-expansion-panel>
   </mat-accordion>

@@ -1,16 +1,17 @@
 <div class="hpWrapper">
-  <mat-vertical-stepper
-    [ngClass]="[animateTop ? 'hide' : 'slide-in-blurred-bottom']"
+  <mat-vertical-stepper linear  #stepper
+    [ngClass]="[animateTop ? '' : 'slide-in-blurred-bottom']"
   >
 <!--STEP 1-->
     <mat-step>
       <form>
-        <ng-template matStepLabel>What are you looking for?</ng-template>
+        <ng-template matStepLabel>What are you looking for? <small class="answer">{{search.what}}</small></ng-template>
         <button
           mat-button
           matStepperNext
           *ngFor="let c of categories"
           class="card"
+          (click)="search.what = c.name"
         >
           <img
             mat-card-image
@@ -24,10 +25,10 @@
 <!--STEP 2-->
     <mat-step>
       <form>
-        <ng-template matStepLabel>Where?</ng-template>
+        <ng-template matStepLabel>Where? <small  class="answer">{{search.where}}</small></ng-template>
         <ul>
           <li *ngFor="let a of areas" class="area">
-            <button mat-button matStepperNext class="card" (click)="picker.open()">{{ a }}</button>
+            <button mat-button matStepperNext class="card" (click)="search.when = ''; search.where = a; picker.open()">{{ a }}</button>
           </li>
         </ul>
       </form>
@@ -36,16 +37,26 @@
 <!--STEP 3-->
     <mat-step>
       <form>
-        <ng-template matStepLabel>When?</ng-template>
+        <ng-template matStepLabel>When? <small  class="answer">{{search.when}}</small></ng-template>
         <div class="datepicker">
-          <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+          <input matInput [matDatepicker]="picker"  (dateChange)="dateChange($event.target.value);stepper.next()">
           <mat-datepicker #picker></mat-datepicker>
         </div>
+      </form>
+    </mat-step>
+    <!--STEP 4-->
+    <mat-step>
+      <form>
+        <ng-template matStepLabel>Write your message</ng-template>
+        <mat-form-field  class="writeMessage">
+          <textarea matInput (input)="search.write = $event.target.value" value="Hi, I would like to fix my sink, it got exploded...."></textarea>
+        </mat-form-field>
         <button
           mat-stroked-button
           matStepperNext
           color="primary"
           (click)="animateTop = !animateTop"
+          [ngClass]="[search.when === '' ? 'hide' : 'slide-in-blurred-bottom']"
         >
           Let's do it!
         </button>
@@ -53,17 +64,7 @@
     </mat-step>
   </mat-vertical-stepper>
 
-  
-  <button
-  mat-stroked-button
-  color="primary"
-  (click)="animateTop = !animateTop"
->
-  back!
-</button>
-
-  <app-results [animateTop]="animateTop"></app-results>
 </div>
-<div class="hpMaps">
-   <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom"></agm-map>
+<div class="hpResults">
+  <app-results [animateTop]="animateTop"></app-results>
 </div>

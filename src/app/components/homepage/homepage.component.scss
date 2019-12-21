@@ -17,16 +17,13 @@ h1 {
   width: 300px;
 }
 
-.hpMaps {
+.hpResults {
   width: 50%;
   float: left;
   height: calc(100vh - 64px);
 }
 .cardsWrapper {
   padding: 0% 10%;
-}
-agm-map {
-  height: calc(100vh - 64px);
 }
 .card {
   width: 31%;
@@ -75,4 +72,10 @@ agm-map {
 }
 
 .hide{display:none;}
-.datepicker{margin-top:20px;}
+.datepicker{margin-top:20px;
+input{opacity:0}}
+.answer{font-weight: bold; font-size: 18px;}
+.lock{
+  pointer-events: none;
+}
+.mat-form-field{width:100%;}

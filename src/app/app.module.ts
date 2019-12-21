@@ -5,10 +5,8 @@ import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatNativeDateModule } from '@angular/material/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule , HTTP_INTERCEPTORS} from '@angular/common/http';
 
-/* AGM */
-import { AgmCoreModule } from "@agm/core";
 
 /* Angular Matirial */
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -26,20 +24,23 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
 import { ContactComponent } from "./components/contact/contact.component";
 import { HomepageComponent } from "./components/homepage/homepage.component";
 import { ResultsComponent } from "./components/results/results.component";
+import { LoginComponent } from './components/login/login.component';
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './auth.guard';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { TokenInterceptorService } from './services/token-interceptor.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     ContactComponent,
     HomepageComponent,
-    ResultsComponent
+    ResultsComponent,
+    LoginComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
-    AgmCoreModule.forRoot({
-      apiKey: "AIzaSyCG43sbbdLsGywMwY0T7-1yOoKVDGfnbsk",
-      libraries: ["places"]
-    }),
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
@@ -58,7 +59,11 @@ import { ResultsComponent } from "./components/results/results.component";
     MatDatepickerModule,
     MatNativeDateModule 
   ],
-  providers: [],
+  providers: [AuthService, AuthGuard,{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

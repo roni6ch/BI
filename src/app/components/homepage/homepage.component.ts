@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild} from "@angular/core";
 import { HttpRequestsService } from "../../services/http-requests.service";
+import * as moment from "moment";
 
 @Component({
   selector: "app-homepage",
@@ -7,9 +8,12 @@ import { HttpRequestsService } from "../../services/http-requests.service";
   styleUrls: ["./homepage.component.scss"]
 })
 export class HomepageComponent implements OnInit {
-  lat: number = 32.0055;
-  lng: number = 34.8854;
-  zoom: number = 10;
+  search = {
+    what : '',
+    where: '',
+    when :'',
+    write :''
+  }
   animateTop = false;
   areas: string[] = [];
   categories: any[] = [];
@@ -24,5 +28,12 @@ export class HomepageComponent implements OnInit {
     this.httpReq.getCategories().toPromise().then(result => {
       this.categories = result;
     });
+  }
+  dateChange(date){
+    this.search.when = moment(date).format("LL");
+  }
+  sendMessage(r){
+    console.log(r);
+    
   }
 }

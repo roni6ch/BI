@@ -30,7 +30,7 @@ export class ResultsComponent implements OnInit {
   sort(val): any {
     this.sortBy = val;
     if (val === "stars"){
-      this.results = _.sortBy(this.results, [function(o) { return o.rate; }]).reverse();
+      this.results = _.sortBy(this.results, [function(o) { return o.rate_sum; }]).reverse();
     }
     if (val === "reviews"){
       this.results = _.sortBy(this.results, [function(o) { return o.reviews.length; }]).reverse();
