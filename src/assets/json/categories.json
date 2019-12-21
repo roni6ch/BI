@@ -1,0 +1,22 @@
+[ 
+  { 
+     "name":"אינסטלטורים",
+     "img":"plumber.png"
+  },
+  { 
+     "name":"מיזוג",
+     "img":"airCondition.png"
+  },
+  { 
+     "name":"חשמל",
+     "img":"electrician.png"
+  },
+  { 
+     "name":"דודי שמש",
+     "img":"sunBoiler.png"
+  },
+  { 
+     "name":"מוצרי חשמל",
+     "img":"electricTech.png"
+  }
+]

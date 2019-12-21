@@ -1,0 +1,102 @@
+
+    
+.hide{display:none;}
+.results{
+  
+    padding:2%;
+  
+    .person_logo{width: 100px;
+      height: 100px;
+    }
+    .mat-expansion-panel-header{
+      padding:2%;
+      position: relative;
+    }
+    .mat-expansion-panel-header:hover{
+      background: #e0e0e057;
+    }
+    
+    .mat-expansion-indicator{position: absolute; right:0px; top:50px;}
+    .result{    margin-bottom: 1%;
+      display: block;
+    }
+  
+    .mat-expansion-panel-header-description, .mat-expansion-panel-header-title{
+      flex-grow: initial;
+      float:left;
+    }
+    .name{
+      color: #3f52b5;
+      font-weight: bold;
+      text-transform: capitalize;
+      width:100px;
+      font-size:20px;
+      line-height: 100px;
+    }
+    .rate{
+      width: 100px;
+    }
+    .rate span{ 
+      color: #3f52b5;
+      display: block;
+      font-weight: bold;
+      font-size: 45px;
+      margin-top: 20px; 
+    }
+    .reviews{
+      width: 100px;
+    
+    }
+    .reviews span{ 
+      color: #3f52b5;
+      display: block;
+      font-weight: bold;
+      font-size: 45px;
+      margin-top: 20px; 
+    }
+    .userInfo{
+      text-align: left;
+    }
+    .reviewsWrapper{
+      text-align: left;
+    }
+    .phone{float:right;}
+    .buissnessName{
+      font-weight: bold;;
+    }
+    .reviewsWrapper{
+      
+      margin-top: 10px;
+    }
+    .reviewsWrapper h2{font-weight: bold;}
+    .review{
+      width: 100%;
+      border-bottom: 1px solid #ccc;
+      margin: 2% 0%;
+    }
+    .reviewRate{
+      width:30%;
+      font-size:20px;
+      display: inline-block;
+      span{
+        color: #3f52b5; 
+        display: block;
+        font-size: 12px;
+      }
+      small{
+        font-size:12px; 
+        vertical-align: top;
+      }
+    }
+    .reviewInfo{
+      width:70%;
+      display: inline-block;
+      vertical-align: super;
+    }
+    .material-icons.star{
+      font-size: 17px;
+      width: 18px;
+    }
+   
+
+  }

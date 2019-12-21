@@ -4,7 +4,7 @@
   width: 50%;
   float: left;
   margin: 2% 0%;
-  padding:2%;
+  min-width:450px;
 }
 h1 {
   font-size: 30px;
@@ -20,17 +20,19 @@ h1 {
 .hpMaps {
   width: 50%;
   float: left;
+  height: calc(100vh - 64px);
 }
 .cardsWrapper {
   padding: 0% 10%;
 }
 agm-map {
-  height: 100vh;
+  height: calc(100vh - 64px);
 }
 .card {
   width: 31%;
   float: left;
   margin: 1%;
+  border: 1px solid #ccc;
   cursor: pointer;
 }
 .card img{
@@ -71,28 +73,6 @@ agm-map {
   opacity: 0.5;
   cursor: pointer;
 }
-.results .person_logo{width: 65px;
-}
-.results .mat-expansion-panel-header{
-  padding:2%;
-}
-.results .result{    margin-bottom: 1%;
-  display: block;
-}
-.results .mat-expansion-panel-header-description,.results  .mat-expansion-panel-header-title{
-  flex-grow: initial;
-  float:left;
-}
-.results .name{
-  color: #3f52b5;
-  font-weight: bold;
-  text-transform: capitalize;
-  font-size: 20px;
-}
 
-.results .rate span{ 
-  color: #3f52b5;
-  font-size:20px;
-  display: block;
-  font-weight: bold;
-}
+.hide{display:none;}
+.datepicker{margin-top:20px;}

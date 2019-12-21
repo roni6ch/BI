@@ -1,0 +1,78 @@
+<div [ngClass]="['results ', animateTop ? '' : 'hide']">
+  <!-- FILTER -->
+  <div class="filterResults">
+    <mat-form-field>
+      <mat-label>Sort By</mat-label>
+      <mat-select (selectionChange)="sort($event.value)" [(value)]="sortBy">
+        <mat-option value="reviews">
+          Reviews
+        </mat-option>
+        <mat-option value="stars">
+          Stars
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- ACCORDION -->
+  <mat-accordion
+    *ngFor="let r of results"
+    [ngClass]="['result ', animateTop ? 'slide-in-blurred-bottom' : '']"
+  >
+    <!-- HEADER -->
+    <mat-expansion-panel>
+      <mat-expansion-panel-header
+        [collapsedHeight]="'100px'"
+        [expandedHeight]="'auto'"
+      >
+        <mat-panel-title>
+          <img src="{{ r.logo }}" class="person_logo" />
+        </mat-panel-title>
+        <mat-panel-description>
+          <p class="name">{{ r.name }}</p>
+          <p class="rate">
+            Rate <span>{{ r.rate }}</span>
+          </p>
+          <p class="reviews">
+            Reviews <span>{{ r.reviews.length }}</span>
+          </p>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <!-- BODY -->
+      <div class="resultExpendedWrapper">
+        <div class="userInfo">
+          <a href="{{ r.web }}">{{ r.web }}</a>
+
+          <a class="phone" href="tel:{{ r.phone }}">
+            <button mat-stroked-button color="primary">Call now!</button></a
+          >
+          <p class="buissnessName">{{ r.business_name }}</p>
+        </div>
+        <div class="reviewsWrapper">
+          <h2>Reviews:</h2>
+          <ul>
+            <li *ngFor="let rev of r.reviews" class="review">
+              <div class="reviewRate">
+                <mat-icon
+                  aria-hidden="false"
+                  aria-label="star icon"
+                  class="star"
+                  >star</mat-icon
+                >
+
+                <small>{{ rev.rate }} </small>
+                <span>{{ rev.name }}</span>
+                <small> {{ rev.date }} </small>
+              </div>
+
+              <div class="reviewInfo">
+                {{ rev.review }}
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

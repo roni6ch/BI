@@ -1,66 +1,69 @@
 <div class="hpWrapper">
-  <mat-vertical-stepper [linear]="isLinear" #stepper>
-    <mat-step [stepControl]="firstFormGroup">
-      <form [formGroup]="firstFormGroup">
+  <mat-vertical-stepper
+    [ngClass]="[animateTop ? 'hide' : 'slide-in-blurred-bottom']"
+  >
+<!--STEP 1-->
+    <mat-step>
+      <form>
         <ng-template matStepLabel>What are you looking for?</ng-template>
-        <mat-card class="card" *ngFor="let c of categories">
-          <img mat-card-image src="./assets/images/categories/{{c.img}}" alt="{{c.name}}">
-          <span>{{c.name}}</span>
-        </mat-card>
+        <button
+          mat-button
+          matStepperNext
+          *ngFor="let c of categories"
+          class="card"
+        >
+          <img
+            mat-card-image
+            src="./assets/images/categories/{{ c.img }}"
+            alt="{{ c.name }}"
+          />{{ c.name }}
+        </button>
       </form>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup">
-      <form [formGroup]="secondFormGroup">
+
+<!--STEP 2-->
+    <mat-step>
+      <form>
         <ng-template matStepLabel>Where?</ng-template>
         <ul>
           <li *ngFor="let a of areas" class="area">
-            {{a}}
+            <button mat-button matStepperNext class="card" (click)="picker.open()">{{ a }}</button>
           </li>
         </ul>
       </form>
     </mat-step>
-    <mat-step [stepControl]="thirdFormGroup">
-      <form [formGroup]="thirdFormGroup">
-        <ng-template matStepLabel>Filter by</ng-template>
-        <button mat-stroked-button color="primary">Let's do it!</button>
+
+<!--STEP 3-->
+    <mat-step>
+      <form>
+        <ng-template matStepLabel>When?</ng-template>
+        <div class="datepicker">
+          <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+          <mat-datepicker #picker></mat-datepicker>
+        </div>
+        <button
+          mat-stroked-button
+          matStepperNext
+          color="primary"
+          (click)="animateTop = !animateTop"
+        >
+          Let's do it!
+        </button>
       </form>
     </mat-step>
   </mat-vertical-stepper>
 
-  <div class="results">
+  
+  <button
+  mat-stroked-button
+  color="primary"
+  (click)="animateTop = !animateTop"
+>
+  back!
+</button>
 
-    <mat-accordion *ngFor="let r of results" class="result">
-      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <img src="./assets/images/{{r.logo}}" class="person_logo" />
-          </mat-panel-title>
-          <mat-panel-description>
-            <p class="name">{{r.name}}</p>
-            <p class="rate">Rate: <span>{{r.rate}}</span></p>
-            <p class="reviews">{{r.reviews.length}} Reviews</p>
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-      </mat-expansion-panel>
-    </mat-accordion>
-
-  </div>
+  <app-results [animateTop]="animateTop"></app-results>
 </div>
 <div class="hpMaps">
-  <!--<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom"></agm-map>-->
+   <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom"></agm-map>
 </div>
-
-
-
-
-<!--
-                <mat-form-field class="hpForm">
-                  <input type="text" placeholder="Business name" aria-label="Number" matInput [formControl]="myControl"
-                    [matAutocomplete]="auto">
-                  <mat-autocomplete #auto="matAutocomplete">
-                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option.name">
-                      <span>{{option.name}}</span> <small> ({{option.city}})</small>
-                    </mat-option>
-                  </mat-autocomplete>
-                </mat-form-field>
--->

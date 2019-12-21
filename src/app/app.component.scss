@@ -19,6 +19,12 @@ $grayColor: #717171;
   cursor: pointer;
   margin: 10px;
   transition: 0.3s;
+  a{
+  color:#fff;
+  }
+  a:hover{
+    opacity:0.75;
+  }
 }
 #menuContent ul li:hover {
   cursor: pointer;
@@ -30,6 +36,10 @@ $grayColor: #717171;
 }
 .mat-drawer {
   background: $grayColor !important;
-
+overflow: hidden;
   margin-top: 64px;
+}
+
+a.mat-drawer-inner-container{
+  color:#fff;
 }
